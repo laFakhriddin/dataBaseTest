@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Add Words</string>
+    <string name="word">Word</string>
+    <string name="main_word">Main Word</string>
+    <string name="translate">Translate</string>
+    <string name="button">Add Word</string>
+    <string name="todo">TODO</string>
+    <string name="update">Update</string>
+    <string name="some_translation">Some translation</string>
+    <string name="word_main">Word Main</string>
+    <string name="word_title">Word Title</string>
+</resources>

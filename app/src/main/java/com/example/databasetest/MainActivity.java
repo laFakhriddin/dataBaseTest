@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         add = findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-            }
+        add.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
         });
 
         dbHelper = new DBHelper(MainActivity.this);
@@ -46,9 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, word_id, word_name, word_main_name, word_translation);
+        customAdapter = new CustomAdapter(MainActivity.this, this, word_id, word_name, word_main_name, word_translation);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            recreate();
+        }
     }
 
     void storeDataInArrays() {

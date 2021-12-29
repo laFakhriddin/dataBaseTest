@@ -27,15 +27,13 @@ public class UpdateActivity extends AppCompatActivity {
 
         getAndSetIntentDate();
 
-        update_button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                DBHelper myDB = new DBHelper(UpdateActivity.this);
-                myDB.updateData(id, word, mainWord, translate);
-            }
+        update_button.setOnClickListener(v -> {
+            DBHelper myDB = new DBHelper(UpdateActivity.this);
+            word = word_input.getText().toString().trim();
+            mainWord = main_word_input.getText().toString().trim();
+            translate = translate_input.getText().toString().trim();
+            myDB.updateData(id, word, mainWord, translate);
         });
-
     }
 
     void getAndSetIntentDate() {

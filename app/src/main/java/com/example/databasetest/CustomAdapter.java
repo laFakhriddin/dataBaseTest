@@ -1,5 +1,6 @@
 package com.example.databasetest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,13 +17,15 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
+    Activity activity;
     private ArrayList word_id, word_name, word_main_name, word_translation;
 
-    CustomAdapter(Context context,
+    CustomAdapter(Activity activity, Context context,
                   ArrayList word_id,
                   ArrayList word_name,
                   ArrayList word_main_name,
                   ArrayList word_translation) {
+        this.activity = activity;
         this.context = context;
         this.word_id = word_id;
         this.word_name = word_name;
@@ -44,17 +47,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.word_name_txt.setText(String.valueOf(word_name.get(position)));
         holder.word_main_name_txt.setText(String.valueOf(word_main_name.get(position)));
         holder.word_translation_txt.setText(String.valueOf(word_translation.get(position)));
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mainLayout.setOnClickListener((view) -> {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(word_id.get(position)));
-                intent.putExtra("word", String.valueOf(word_name.get(position)));
-                intent.putExtra("main_word", String.valueOf(word_main_name.get(position)));
-                intent.putExtra("translate", String.valueOf(word_translation.get(position)));
-                context.startActivity(intent);
-            }
+            Intent intent = new Intent(context, UpdateActivity.class);
+            intent.putExtra("id", String.valueOf(word_id.get(position)));
+            intent.putExtra("word", String.valueOf(word_name.get(position)));
+            intent.putExtra("main_word", String.valueOf(word_main_name.get(position)));
+            intent.putExtra("translate", String.valueOf(word_translation.get(position)));
+            activity.startActivityForResult(intent, 1);
+
         });
     }
 

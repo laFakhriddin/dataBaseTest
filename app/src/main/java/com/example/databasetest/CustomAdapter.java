@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private final ArrayList word_name;
     private final ArrayList word_main_name;
     private final ArrayList word_translation;
+
+    Animation translate_anim;
 
     CustomAdapter(Activity activity, Context context,
                   ArrayList word_id,
@@ -67,7 +71,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return word_id.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView word_id_txt, word_name_txt, word_main_name_txt, word_translation_txt;
         LinearLayout mainLayout;
@@ -79,6 +83,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             word_main_name_txt = itemView.findViewById(R.id.word_main);
             word_translation_txt = itemView.findViewById(R.id.word_translation);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(translate_anim);
         }
     }
 }

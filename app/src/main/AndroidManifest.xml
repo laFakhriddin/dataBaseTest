@@ -12,11 +12,12 @@
         android:theme="@style/Theme.DataBaseTest">
         <activity
             android:name=".UpdateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddActivity"
             android:exported="false"
-            android:parentActivityName=".AddActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

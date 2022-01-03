@@ -9,4 +9,6 @@
     <string name="some_translation">Some translation</string>
     <string name="word_main">Word Main</string>
     <string name="word_title">Word Title</string>
+    <string name="delete">Delete</string>
+    <string name="delete_icon">Delete All</string>
 </resources>

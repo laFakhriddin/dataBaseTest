@@ -16,9 +16,12 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private Context context;
+    private final Context context;
     Activity activity;
-    private ArrayList word_id, word_name, word_main_name, word_translation;
+    private final ArrayList word_id;
+    private final ArrayList word_name;
+    private final ArrayList word_main_name;
+    private final ArrayList word_translation;
 
     CustomAdapter(Activity activity, Context context,
                   ArrayList word_id,
@@ -64,7 +67,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return word_id.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView word_id_txt, word_name_txt, word_main_name_txt, word_translation_txt;
         LinearLayout mainLayout;
